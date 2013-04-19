@@ -1,0 +1,51 @@
+jQuery(document).ready ->
+
+  jQuery.get 'words.txt', (data) ->
+
+		newlineRegEx = new RegExp('\n',"g")
+
+		data = 
+			data.replace(/[\.,-\/?#!$%\^&\*;:{}=\-_`~()]/g,"").
+			replace(newlineRegEx," ").
+			toLowerCase().
+			replace(/\s{2,}/g, " ")
+		console.log data
+
+		jQuery.get 'common.txt', (words) ->
+
+		 	words = words.split(" ")
+		 	console.log words
+
+		 	for word in words
+		 		wordRegEx = new RegExp(" "+word+" ", "g")
+		 		secondWordRegEx = new RegExp(word,"g")
+		 		console.log word
+		 		data =
+		 			data.replace(wordRegEx," ")
+		 	console.log data
+
+		 	data = data.split(" ")
+		 	console.log data
+		 	counts = {}
+		 	for word in data
+		 		console.log word
+		 		if counts[word]?
+		 			counts[word]++
+		 		else
+		 			counts[word] = 1
+
+		 	console.log counts
+
+		 	countsArray = []
+		 	for word, count of counts
+		 		countsArray.push([word,count])
+
+		 	console.log countsArray
+
+		 	console.log countsArray.sort (first,second) ->
+		 		second[1] - first[1]
+
+		 	for pair in countsArray
+		 		console.log pair[0] + ": " + pair[1]
+
+		 		jQuery("#results").append("<tr><td>"+pair[0]+"</td><td>"+pair[1]+"</td></tr>")
