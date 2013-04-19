@@ -1,0 +1,17 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+<script src="textbox.js"></script> 
+</head>
+<body>
+
+ <form> 
+  <textarea id="text" rows="20" cols="50">Paste text here</textarea>
+	<input type="submit" id="submit" value="Analyze!" />
+ </form>
+
+ <div id="results"></div>
+
+</body>
+
+</html>
